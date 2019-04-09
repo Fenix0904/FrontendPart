@@ -6,6 +6,6 @@ const {
 } = React.createContext();
 
 export {
-    ServiceContextProvider
-    ServiceContextConsumer,
+    ServiceContextProvider,
+    ServiceContextConsumer
 }

@@ -2,7 +2,6 @@ import React from 'react';
 import { ServiceContextConsumer } from '../service-context/ServiceContext';
 
 const withService = () => (Wrapped) => {
-
     return (props) => {
         return (
             <ServiceContextConsumer>
@@ -10,7 +9,7 @@ const withService = () => (Wrapped) => {
                     (service) => {
                         return (
                             <Wrapped {...props} service={service}/>
-                        )
+                        );
                     }
                 }
             </ServiceContextConsumer>

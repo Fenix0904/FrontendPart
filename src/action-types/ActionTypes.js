@@ -1,0 +1,1 @@
+export const ANIMES_LOADED = 'ANIMES_LOADED';

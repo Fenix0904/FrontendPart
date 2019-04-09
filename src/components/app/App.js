@@ -1,58 +1,19 @@
-import React, {Component} from 'react';
+import React from 'react';
+import {Route, Switch} from 'react-router-dom';
 import './App.css';
-import Service from "./services/Service";
+import {HomePage, AnimePage} from "../pages";
+import Header from "../header/Header";
 
-class App extends Component {
-
-    state = {
-        myService: new Service(),
-        animes: [
-
-        ]
-    };
-
-    componentDidMount() {
-        this.state.myService.getAllAnime()
-            .then((item) => {
-                this.setState({
-                    animes: item
-                });
-            })
-    }
-
-
-    render() {
-        return (
-            <div className="App">
-                <ul>
-                {
-                    this.state.animes.map(item => {
-                        return (
-                            <li key={item.id}>
-                                <h2>
-                                    {item.title}
-                                </h2>
-                                <br/>
-                                <label>
-                                    {item.description}
-                                </label>
-                                <ul>
-                                    {item.genres.map(genre => {
-                                        return (
-                                            <li key={genre.id}>
-                                                {genre.genre}
-                                            </li>
-                                        )
-                                    })}
-                                </ul>
-                            </li>
-                        )
-                    })
-                }
-                </ul>
-            </div>
-        );
-    }
-}
+const App = () => {
+    return (
+        <main role="main" className="container">
+            <Header/>
+            <Switch>
+                <Route path="/" component={HomePage} exact/>
+                <Route path="/anime" component={AnimePage}/>
+            </Switch>
+        </main>
+    )
+};
 
 export default App;
