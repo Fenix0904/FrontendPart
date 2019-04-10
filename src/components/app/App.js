@@ -6,11 +6,11 @@ import Header from "../header/Header";
 
 const App = () => {
     return (
-        <main role="main" className="container">
+        <main role="main">
             <Header/>
             <Switch>
                 <Route path="/" component={HomePage} exact/>
-                <Route path="/anime" component={AnimePage}/>
+                <Route path="/animes/:id" component={AnimePage}/>
             </Switch>
         </main>
     )

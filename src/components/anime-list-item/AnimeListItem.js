@@ -4,14 +4,14 @@ import {Link} from "react-router-dom";
 import Text from 'react-dotdotdot'
 
 const AnimeListItem = ({anime}) => {
-    const {title, genres, description} = anime;
+    const {id, title, genres, description} = anime;
     return (
 
         <div className="card mx-auto mx-sm-3 my-1">
             <div className="card-body d-flex p-2 p-sm-3">
                 <div className="row justify-content-between">
                     <div className="col-md-8 col-7 d-sm-block">
-                        <Link to="#" className="h4 card-title">{title}</Link>
+                        <Link to={"/animes/" + id} className="h4 card-title">{title}</Link>
                         <div className="card-subtitle text-muted d-flex">
                             {
                                 genres.map(item => {
@@ -23,7 +23,7 @@ const AnimeListItem = ({anime}) => {
                                 })
                             }
                         </div>
-                        <Text clamp={7}>
+                        <Text className="card-text" clamp={7}>
                             {description}
                         </Text>
                     </div>
