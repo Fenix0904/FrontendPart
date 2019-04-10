@@ -1,6 +1,7 @@
 import React from 'react';
 import './AnimeListItem.css';
 import {Link} from "react-router-dom";
+import Text from 'react-dotdotdot'
 
 const AnimeListItem = ({anime}) => {
     const {title, genres, description} = anime;
@@ -22,10 +23,12 @@ const AnimeListItem = ({anime}) => {
                                 })
                             }
                         </div>
-                        <p className="card-text">{description}</p>
+                        <Text clamp={7}>
+                            {description}
+                        </Text>
                     </div>
                     <div className="col-md-4 col-5 align-self-center">
-                        <img className="img-fluid" src="https://source.unsplash.com/random/350x500" alt=""/>
+                        <img className="img-fluid" src="https://source.unsplash.com/random/340x430" alt=""/>
                     </div>
                 </div>
             </div>
