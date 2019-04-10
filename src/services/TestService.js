@@ -22,9 +22,10 @@ export default class TestService {
     ];
 
     getAllAnimes() {
-        return new Promise((resolve) => {
+        return new Promise((resolve, reject) => {
             setTimeout(() => {
                 resolve(this.data)
+                // reject(new Error("Smth went wrong"));
             }, 700)
         });
     }

@@ -1,1 +1,3 @@
 export const ANIMES_LOADED = 'ANIMES_LOADED';
+export const DATA_REQUESTED = 'DATA_REQUESTED';
+export const FETCHING_ERROR = 'FETCHING_ERROR';

@@ -1,4 +1,4 @@
-import {ANIMES_LOADED} from "../action-types/ActionTypes";
+import {ANIMES_LOADED, DATA_REQUESTED, FETCHING_ERROR} from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
     return {
@@ -7,6 +7,21 @@ const animesLoaded = (newAnimes) => {
     }
 };
 
+const dataRequested = () => {
+    return {
+        type: DATA_REQUESTED
+    }
+};
+
+const fetchingError = (error) => {
+    return {
+        type: FETCHING_ERROR,
+        payload: error
+    }
+};
+
 export {
-    animesLoaded
+    animesLoaded,
+    dataRequested,
+    fetchingError
 };
