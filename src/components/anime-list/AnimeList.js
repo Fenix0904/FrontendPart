@@ -8,7 +8,23 @@ import compose from "../../utils/compose";
 import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
 
-class AnimeList extends React.Component {
+const AnimeList = ( {animes} ) => {
+    return (
+        <div className="flex-column">
+            {
+                animes.map((anime) => {
+                    return (
+                        <div key={anime.id} className="row">
+                            <AnimeListItem anime={anime}/>
+                        </div>
+                    )
+                })
+            }
+        </div>
+    );
+};
+
+class AnimeListContainer extends React.Component {
 
     async componentDidMount() {
         this.props.fetchAnimes();
@@ -22,19 +38,8 @@ class AnimeList extends React.Component {
         if (error) {
             return <ErrorIndicator/>;
         }
-        return (
-            <div className="flex-column">
-                {
-                    animes.map((anime) => {
-                        return (
-                            <div key={anime.id} className="row">
-                                <AnimeListItem anime={anime}/>
-                            </div>
-                        )
-                    })
-                }
-            </div>
-        );
+
+        return <AnimeList animes={animes}/>;
     }
 }
 
@@ -55,4 +60,4 @@ const mapDispatchToProps = (dispatch, ownProps) => {
 export default compose(
     withService(),
     connect(mapStateToProps, mapDispatchToProps)
-)(AnimeList);
+)(AnimeListContainer);
