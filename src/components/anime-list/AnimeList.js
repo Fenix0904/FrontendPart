@@ -3,7 +3,7 @@ import './AnimeList.css';
 import AnimeListItem from "../anime-list-item/AnimeListItem";
 import {connect} from "react-redux";
 import withService from "../hoc/withService";
-import {animesLoaded, dataRequested, fetchingError} from "../../actions";
+import {fetchAnimes} from "../../actions";
 import compose from "../../utils/compose";
 import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
@@ -11,11 +11,7 @@ import ErrorIndicator from "../error-indicator/ErrorIndicator";
 class AnimeList extends React.Component {
 
     async componentDidMount() {
-        const {service} = this.props;
-        this.props.dataRequested();
-        service.getAllAnimes()
-            .then((data) => this.props.animesLoaded(data))
-            .catch((error) => this.props.fetchingError(error));
+        this.props.fetchAnimes();
     }
 
     render() {
@@ -50,11 +46,9 @@ const mapStateToProps = (state) => {
     }
 };
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        animesLoaded: (animes) => dispatch(animesLoaded(animes)),
-        dataRequested: () => dispatch(dataRequested()),
-        fetchingError: (error) => dispatch(fetchingError(error)),
+        fetchAnimes: fetchAnimes(ownProps.service, dispatch)
     }
 };
 

@@ -1,4 +1,4 @@
-import {ANIMES_LOADED, DATA_REQUESTED, FETCHING_ERROR} from "../action-types/ActionTypes";
+import {FETCH_ANIMES_SUCCESS, FETCH_DATA_REQUESTED, FETCH_ERROR} from "../action-types/ActionTypes";
 
 const initialState = {
     animes: [],
@@ -9,19 +9,19 @@ const initialState = {
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
-        case DATA_REQUESTED:
+        case FETCH_DATA_REQUESTED:
             return {
                 ...state,
                 loading: true,
                 error: null
             };
-        case ANIMES_LOADED:
+        case FETCH_ANIMES_SUCCESS:
             return {
                 animes: action.payload,
                 loading: false,
                 error: null
             };
-        case FETCHING_ERROR:
+        case FETCH_ERROR:
             return {
                 animes: [],
                 loading: false,
