@@ -29,4 +29,8 @@ export default class TestService {
             }, 700)
         });
     }
+
+    getAnimeById(id) {
+        return this.data.find((item) => item.id === id);
+    }
 }

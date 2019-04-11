@@ -7,6 +7,7 @@ import ErrorBoundary from './components/error-boundary/ErrorBoundary';
 import Service from './services/TestService';
 import {ServiceContextProvider} from "./components/service-context/ServiceContext";
 import store from './store';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
 const service = new Service();
 

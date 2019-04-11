@@ -1,7 +1,7 @@
 import React from 'react';
 import {Route, Switch} from 'react-router-dom';
 import './App.css';
-import {HomePage, AnimePage} from "../pages";
+import {HomePage, AnimeDetailsPage} from "../pages";
 import Header from "../header/Header";
 
 const App = () => {
@@ -10,7 +10,7 @@ const App = () => {
             <Header/>
             <Switch>
                 <Route path="/" component={HomePage} exact/>
-                <Route path="/animes/:id" component={AnimePage}/>
+                <Route path="/animes/:id" component={AnimeDetailsPage}/>
             </Switch>
         </main>
     )

@@ -4,7 +4,7 @@ import {Link} from "react-router-dom";
 const Header = () => {
     return (
         <nav className="navbar navbar-expand-sm navbar-light bg-light">
-            <Link className="navbar-brand" to="#">AniSite</Link>
+            <Link className="navbar-brand" to="/">AniSite</Link>
             <button className="navbar-toggler" data-toggle="collapse" data-target="#navbarNav">
                 <span className="navbar-toggler-icon"/>
             </button>

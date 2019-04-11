@@ -8,18 +8,20 @@ import compose from "../../utils/compose";
 import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
 
-const AnimeList = ( {animes} ) => {
+const AnimeList = ({animes}) => {
     return (
-        <div className="flex-column">
+        <div className="container">
+            <div className="list-group">
             {
                 animes.map((anime) => {
                     return (
-                        <div key={anime.id} className="row">
+                        <div key={anime.id}>
                             <AnimeListItem anime={anime}/>
                         </div>
                     )
                 })
             }
+            </div>
         </div>
     );
 };

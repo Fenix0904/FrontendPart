@@ -1,7 +1,7 @@
 import HomePage from './HomePage';
-import AnimePage from './AnimePage';
+import AnimeDetailsPage from './AnimeDetailsPage';
 
 export {
     HomePage,
-    AnimePage
+    AnimeDetailsPage
 }
