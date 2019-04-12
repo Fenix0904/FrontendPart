@@ -29,7 +29,7 @@ const reducer = (state = initialState, action) => {
         case FETCH_ANIME_SUCCESS:
             return {
                 animes: [
-                    ...action.payload
+                    action.payload
                 ],
                 loading: false,
                 error: null

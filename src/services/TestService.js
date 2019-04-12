@@ -4,6 +4,8 @@ export default class TestService {
         {
             id: 1,
             title: "Sword Art Online",
+            season: "Spring 2019",
+            type: "TV (24)",
             genres: [
                 { id: 1, genre: "Action" },
                 { id: 2, genre: "Romance" }
@@ -13,6 +15,8 @@ export default class TestService {
         {
             id: 2,
             title: "Konosuba",
+            season: "Summer 2014",
+            type: "TV (12)",
             genres: [
                 { id: 1, genre: "Isekai" },
                 { id: 2, genre: "Comedy" }
@@ -31,6 +35,10 @@ export default class TestService {
     }
 
     getAnimeById(id) {
-        return this.data.find((item) => item.id === id);
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(this.data.find((item) => item.id == id));
+            }, 700)
+        });
     }
 }

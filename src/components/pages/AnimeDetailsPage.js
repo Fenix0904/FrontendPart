@@ -9,40 +9,37 @@ import {fetchAnimeById} from "../../actions";
 
 const AnimeDetailsPage = ({anime}) => {
     return (
-        <div className="container">
+        <div className="container py-2">
             <div className="row">
                 <h4 className="mx-auto text-primary">{anime.title}</h4>
             </div>
             <div className="row justify-content-between p-2">
                 <div className="col-sm col-md-7 order-2 order-sm-1 pt-2 pt-sm-0">
-                    <div className="border-bottom border-secondary py-1">
-                        <div className="row">
-                            <div className="d-flex">
-                                <b className="mr-2">Season: </b>
-                                <a href="#" className="mr-1 text-secondary">{anime.year}</a>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="d-flex">
-                                <b className="mr-2">Type: </b>
-                                <a href="#" className="mr-1 text-secondary">{anime.type}</a>
-                            </div>
-                        </div>
-                        <div className="row">
-                            <div className="d-flex">
-                                <b className="mr-2">Genres: </b>
-                                {
-                                    anime.genres.map(item => {
-                                        return (
-                                            <Link to="#" key={item.id} className="p-1 text-secondary">
-                                                {item.genre}
-                                            </Link>
-                                        )
-                                    })
-                                }
-                            </div>
+                    <div className="d-flex">
+                        <div className="d-flex">
+                            <b className="mr-2">Season: </b>
+                            <a href="#" className="mr-1 text-secondary">{anime.season}</a>
                         </div>
                     </div>
+                    <div className="d-flex">
+                        <div className="d-flex">
+                            <b className="mr-2">Type: </b>
+                            <a href="#" className="mr-1 text-secondary">{anime.type}</a>
+                        </div>
+                    </div>
+                    <div className="d-flex">
+                        <b className="mr-2">Genres: </b>
+                        {
+                            anime.genres.map(item => {
+                                return (
+                                    <Link to="#" key={item.id} className="px-1 text-secondary">
+                                        {item.genre}
+                                    </Link>
+                                )
+                            })
+                        }
+                    </div>
+                    <hr className="bg-light"/>
                     <div>
                         <span>{anime.description}</span>
                     </div>
@@ -86,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchAnimeById: (id) => fetchAnimeById(ownProps.service, id, dispatch)
+        fetchAnimeById: (id) => fetchAnimeById(ownProps.service, dispatch, id)
     }
 };
 

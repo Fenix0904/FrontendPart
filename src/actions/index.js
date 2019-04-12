@@ -39,8 +39,7 @@ const fetchAnimes = (service, dispatch) => () => {
         .catch((error) => dispatch(fetchingError(error)));
 };
 
-const fetchAnimeById = (service, id,  dispatch) => () => {
-    debugger;
+const fetchAnimeById = (service, dispatch, id) => {
     dispatch(dataRequested());
     service.getAnimeById(id)
         .then((data) => dispatch(animeLoaded(data)))
