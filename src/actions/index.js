@@ -1,8 +1,9 @@
 import {
+    CLOSE_MODAL,
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR
+    FETCH_ERROR, OPEN_MODAL
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -46,7 +47,21 @@ const fetchAnimeById = (service, dispatch, id) => {
         .catch((error) => dispatch(fetchingError(error)));
 };
 
+const openModal = () => {
+    return {
+        type: OPEN_MODAL
+    }
+};
+
+const closeModal = () => {
+    return {
+        type: CLOSE_MODAL
+    }
+};
+
 export {
     fetchAnimes,
-    fetchAnimeById
+    fetchAnimeById,
+    openModal,
+    closeModal
 };
