@@ -1,13 +1,10 @@
 import React from "react";
-import {Button, Col, Container, Form, ListGroup} from "react-bootstrap";
+import {Button, Col, Container, Dropdown, Form, ListGroup} from "react-bootstrap";
 import {connect} from "react-redux";
 import Genre from "../genre-ui/Genre";
+import {addGenreToAnime, removeGenreToAnime} from "../../actions/ActionsCreator";
 
-const AnimeForm = ({createNewAnime = true}, props ) => {
-
-    const onGenreDelete = (id) => {
-          console.log(id);
-    };
+const AnimeForm = ({createNewAnime = true, genres, anime, addGenre, removeGenre}) => {
 
     const title = createNewAnime ? 'Create new anime' : 'Edit';
     return (
@@ -27,15 +24,26 @@ const AnimeForm = ({createNewAnime = true}, props ) => {
                 <Form.Row className="align-items-center">
                     <Form.Group as={Col} sm={3} controlId="formGridGenres">
                         <Form.Label>Genres</Form.Label>
-                        <Form.Control as="select">
-                            <option>Choose...</option>
-                            <option>...</option>
-                        </Form.Control>
+                        <select className="form-control" onChange={(e) => addGenre(e.target.value)}>
+                            <option value="default">Choose genre</option>
+                            {
+                                genres.map(item => {
+                                    return (
+                                        <option key={item.id} value={item.genre}>{item.genre}</option>
+                                    )
+                                })
+                            }
+                        </select>
                     </Form.Group>
                     <Form.Group as={Col} sm={9}>
                         <div className="d-flex justify-content-start flex-wrap">
-                            <Genre id={1} title="dsfdsfdsfdsf" onDelete={onGenreDelete}/>
-                            <Genre id={2} title="fds" onDelete={onGenreDelete}/>
+                            {
+                                anime.genres.map((item, id) => {
+                                    return (
+                                        <Genre key={item.id} id={id} title={item.genre} onDelete={removeGenre}/>
+                                    )
+                                })
+                            }
                         </div>
                     </Form.Group>
                 </Form.Row>
@@ -66,7 +74,8 @@ const AnimeForm = ({createNewAnime = true}, props ) => {
                         <div className="custom-file">
                             <input type="file" className="custom-file-input" id="inputGroupFile"
                                    aria-describedby="inputGroupFile"
-                                   onChange={() => {}}/>
+                                   onChange={() => {
+                                   }}/>
                             <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
@@ -83,13 +92,15 @@ const AnimeForm = ({createNewAnime = true}, props ) => {
 
 const mapStateToProps = (state) => {
     return {
-
+        genres: state.genres,
+        anime: state.anime
     }
 };
 
 const mapDispatchToProps = (dispatch) => {
     return {
-
+        addGenre: (genre) => dispatch(addGenreToAnime(genre)),
+        removeGenre: (id) => dispatch(removeGenreToAnime(id))
     }
 };
 

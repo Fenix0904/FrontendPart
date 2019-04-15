@@ -1,9 +1,10 @@
 import {
+    ADD_GENRE_TO_ANIME,
     CLOSE_MODAL,
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, OPEN_MODAL
+    FETCH_ERROR, OPEN_MODAL, REMOVE_GENRE_FROM_ANIME
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -59,9 +60,25 @@ const closeModal = () => {
     }
 };
 
+const addGenreToAnime = (genre) => {
+    return {
+        type: ADD_GENRE_TO_ANIME,
+        payload: genre
+    }
+};
+
+const removeGenreToAnime = (id) => {
+    return {
+        type: REMOVE_GENRE_FROM_ANIME,
+        payload: id
+    }
+};
+
 export {
     fetchAnimes,
     fetchAnimeById,
     openModal,
-    closeModal
+    closeModal,
+    addGenreToAnime,
+    removeGenreToAnime
 };

@@ -1,47 +1,43 @@
 import {
+    ADD_GENRE_TO_ANIME,
     CLOSE_MODAL,
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, OPEN_MODAL
+    FETCH_ERROR, OPEN_MODAL, REMOVE_GENRE_FROM_ANIME
 } from "../action-types/ActionTypes";
+import {updateLocalAnime} from "./anime";
+import {updateAnimeList} from "./animeList";
 
 const initialState = {
     isModalOpen: false,
     animes: [],
     loading: true,
-    error: null
+    error: null,
+    genres: [
+        {id: 1, genre: "Action"},
+        {id: 2, genre: "Romance"},
+        {id: 3, genre: "Isekai"},
+        {id: 4, genre: "Horror"},
+        {id: 5, genre: "Drama"},
+        {id: 6, genre: "Fantasy"}
+    ],
+    anime: {
+        genres: []
+    }
 };
 
 
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_DATA_REQUESTED:
-            return {
-                ...state,
-                loading: true,
-                error: null
-            };
         case FETCH_ANIMES_SUCCESS:
-            return {
-                animes: action.payload,
-                loading: false,
-                error: null
-            };
         case FETCH_ANIME_SUCCESS:
-            return {
-                animes: [
-                    action.payload
-                ],
-                loading: false,
-                error: null
-            };
         case FETCH_ERROR:
-            return {
-                animes: [],
-                loading: false,
-                error: action.payload
-            };
+            return updateAnimeList(state, action);
+        case ADD_GENRE_TO_ANIME:
+        case REMOVE_GENRE_FROM_ANIME:
+            return updateLocalAnime(state, action);
         case OPEN_MODAL:
             return {
                 ...state,
