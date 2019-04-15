@@ -15,6 +15,8 @@ const Header = ( {openModal} ) => {
                 <ul className="navbar-nav ml-auto">
                     <li className="nav-item">
                         <span className="nav-link" onClick={openModal}>Sing In</span>
+                    </li>
+                    <li className="nav-item">
                         <span className="nav-link">Sing Up</span>
                     </li>
                 </ul>
