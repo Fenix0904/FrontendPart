@@ -14,6 +14,7 @@ const Header = ( {openModal} ) => {
                 <Nav className="ml-auto">
                     <Nav.Link onClick={openModal}>Sing In</Nav.Link>
                     <Nav.Link>Sing Up</Nav.Link>
+                    <Nav.Link as={Link} to="/create">Create</Nav.Link>
                 </Nav>
             </Navbar.Collapse>
         </Navbar>
