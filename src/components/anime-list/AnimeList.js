@@ -1,17 +1,18 @@
 import React from 'react';
 import './AnimeList.css';
-import AnimeListItem from "../anime-list-item/AnimeListItem";
+import AnimeListItem from "./anime-list-item/AnimeListItem";
 import {connect} from "react-redux";
 import withService from "../hoc/withService";
 import {fetchAnimes} from "../../actions/ActionsCreator";
 import compose from "../../utils/compose";
 import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
+import {Container, ListGroup} from "react-bootstrap";
 
 const AnimeList = ({animes}) => {
     return (
-        <div className="container">
-            <div className="list-group">
+        <Container>
+            <ListGroup>
             {
                 animes.map((anime) => {
                     return (
@@ -21,8 +22,8 @@ const AnimeList = ({animes}) => {
                     )
                 })
             }
-            </div>
-        </div>
+            </ListGroup>
+        </Container>
     );
 };
 
