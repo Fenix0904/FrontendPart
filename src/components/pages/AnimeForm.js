@@ -1,13 +1,18 @@
 import React from "react";
 import {Button, Col, Container, Form, ListGroup} from "react-bootstrap";
+import {connect} from "react-redux";
+import Genre from "../genre-ui/Genre";
 
-const AnimeForm = () => {
-    const fileChangedHandler = (event) => {
-        console.log(event.target.files[0]);
+const AnimeForm = ({createNewAnime = true}, props ) => {
+
+    const onGenreDelete = (id) => {
+          console.log(id);
     };
+
+    const title = createNewAnime ? 'Create new anime' : 'Edit';
     return (
         <Container>
-            <h2>Title</h2>
+            <h2>{title}</h2>
             <Form>
                 <Form.Group controlId="formGridTitle">
                     <Form.Label>Title</Form.Label>
@@ -29,12 +34,8 @@ const AnimeForm = () => {
                     </Form.Group>
                     <Form.Group as={Col} sm={9}>
                         <div className="d-flex justify-content-start flex-wrap">
-                            <span className="mx-1 d-flex">ssafsa</span>
-                            <span className="mx-1 d-flex">ssafsa</span>
-                            <span className="mx-1 d-flex">ssafsa</span>
-                            <span className="mx-1 d-flex">ssafsa</span>
-                            <span className="mx-1 d-flex">ssafsa</span>
-                            <span className="mx-1 d-flex">ssafsa</span>
+                            <Genre id={1} title="dsfdsfdsfdsf" onDelete={onGenreDelete}/>
+                            <Genre id={2} title="fds" onDelete={onGenreDelete}/>
                         </div>
                     </Form.Group>
                 </Form.Row>
@@ -65,7 +66,7 @@ const AnimeForm = () => {
                         <div className="custom-file">
                             <input type="file" className="custom-file-input" id="inputGroupFile"
                                    aria-describedby="inputGroupFile"
-                                   onChange={fileChangedHandler}/>
+                                   onChange={() => {}}/>
                             <label className="custom-file-label" htmlFor="inputGroupFile01">Choose file</label>
                         </div>
                     </div>
@@ -79,4 +80,17 @@ const AnimeForm = () => {
     )
 };
 
-export default AnimeForm;
+
+const mapStateToProps = (state) => {
+    return {
+
+    }
+};
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+
+    }
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(AnimeForm);
