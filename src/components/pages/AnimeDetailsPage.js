@@ -5,7 +5,7 @@ import ErrorIndicator from "../error-indicator/ErrorIndicator";
 import compose from "../../utils/compose";
 import withService from "../hoc/withService";
 import connect from "react-redux/es/connect/connect";
-import {fetchAnimeById} from "../../actions";
+import {fetchAnimeById} from "../../actions/ActionsCreator";
 
 const AnimeDetailsPage = ({anime}) => {
     return (

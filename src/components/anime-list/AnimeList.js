@@ -3,7 +3,7 @@ import './AnimeList.css';
 import AnimeListItem from "../anime-list-item/AnimeListItem";
 import {connect} from "react-redux";
 import withService from "../hoc/withService";
-import {fetchAnimes} from "../../actions";
+import {fetchAnimes} from "../../actions/ActionsCreator";
 import compose from "../../utils/compose";
 import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
