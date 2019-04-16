@@ -15,6 +15,7 @@ class AnimeForm extends React.Component {
             genres: [],
             season: '',
             type: '',
+            episodesCount: null,
             image: ''
         }
     };
@@ -24,6 +25,15 @@ class AnimeForm extends React.Component {
         this.props.loadSeasonList();
         this.props.loadAnimeTypesList();
     }
+
+    onAnimePropertyChange = (e, prop) => {
+        this.setState({
+           anime: {
+               ...this.state.anime,
+               [prop]: e.target.value
+           }
+        })
+    };
 
     removeGenre = (id) => {
         this.setState({
@@ -69,28 +79,25 @@ class AnimeForm extends React.Component {
         const {createNewAnime = true, genres, seasons, types} = this.props;
         const {anime} = this.state;
         const title = createNewAnime ? 'Add new anime' : 'Edit';
-        let noGenreLabel;
-        if (anime.genres.length === 0) {
-            noGenreLabel = "You haven't added a genre yet.";
-        }
+        const noGenreLabel = anime.genres.length === 0 ? "You haven't added a genre yet." : "";
         return (
             <Container>
                 <h2>{title}</h2>
                 <Form>
                     <Form.Group controlId="formGridTitle">
                         <Form.Label>Title</Form.Label>
-                        <Form.Control placeholder="Enter title"/>
+                        <Form.Control placeholder="Enter title" onChange={e => this.onAnimePropertyChange(e, "title")}/>
                     </Form.Group>
 
                     <Form.Group controlId="formGridDescription">
                         <Form.Label>Description</Form.Label>
-                        <Form.Control as="textarea"/>
+                        <Form.Control as="textarea" onChange={e => this.onAnimePropertyChange(e, "description")}/>
                     </Form.Group>
 
                     <Form.Row className="align-items-center">
                         <Form.Group as={Col} sm={3} controlId="formGridGenres">
                             <Form.Label>Genres</Form.Label>
-                            <select className="form-control" onChange={(e) => this.addGenre(e.target.value)}>
+                            <select className="form-control" onChange={e => this.addGenre(e.target.value)}>
                                 <option value="default">Choose...</option>
                                 {
                                     genres.map(item => {
@@ -107,7 +114,8 @@ class AnimeForm extends React.Component {
                                 {
                                     anime.genres.map((item, id) => {
                                         return (
-                                            <Genre key={item.id} id={id} title={item.genre} onDelete={this.removeGenre}/>
+                                            <Genre key={item.id} id={id} title={item.genre}
+                                                   onDelete={this.removeGenre}/>
                                         )
                                     })
                                 }
@@ -115,10 +123,10 @@ class AnimeForm extends React.Component {
                         </Form.Group>
                     </Form.Row>
 
-                    <Form.Row>
+                    <Form.Row className="d-block d-sm-flex">
                         <Form.Group as={Col} controlId="formGridSeason">
                             <Form.Label>Season</Form.Label>
-                            <Form.Control as="select">
+                            <select className="form-control" onChange={e => this.onAnimePropertyChange(e, "season")}>
                                 <option value="default">Choose...</option>
                                 {
                                     seasons.map(item => {
@@ -127,28 +135,34 @@ class AnimeForm extends React.Component {
                                         )
                                     })
                                 }
-                            </Form.Control>
+                            </select>
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridType">
-                            <Form.Label>Type</Form.Label>
-                            <Form.Control as="select">
-                                <option value="default">Choose...</option>
-                                {
-                                    types.map(item => {
-                                        return (
-                                            <option key={item.id} value={item.type}>{item.type}</option>
-                                        )
-                                    })
-                                }
-                            </Form.Control>
+                            <Form.Label>Type & Episodes</Form.Label>
+                            <div className="d-flex input-group">
+                                <div className="input-group-prepend">
+                                    <select className="input-group-text"
+                                            onChange={(e) => this.onAnimePropertyChange(e, "type")}>
+                                        <option value="default">Choose...</option>
+                                        {
+                                            types.map(item => {
+                                                return (
+                                                    <option key={item.id} value={item.type}>{item.type}</option>
+                                                )
+                                            })
+                                        }
+                                    </select>
+                                </div>
+                                <Form.Control as="input" placeholder="Episodes" onChange={e => this.onAnimePropertyChange(e, "episodesCount")}/>
+                            </div>
                         </Form.Group>
                     </Form.Row>
 
                     <Form.Group>
                         <div className="input-group">
                             <div className="input-group-prepend">
-                                <span className="input-group-text" id="inputGroupFile">Upload</span>
+                                <span className="input-group-text" id="inputGroupFile">Poster</span>
                             </div>
                             <div className="custom-file">
                                 <input type="file" className="custom-file-input" id="inputGroupFile"
