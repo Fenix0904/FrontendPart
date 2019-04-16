@@ -4,3 +4,4 @@ export const FETCH_ANIME_SUCCESS = 'FETCH_ANIME_SUCCESS';
 export const FETCH_ERROR = 'FETCH_ERROR';
 export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
+export const FETCH_ANIME_SUB_DATA = 'FETCH_ANIME_SUB_DATA';

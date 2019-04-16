@@ -1,10 +1,9 @@
 import {
-    ADD_GENRE_TO_ANIME,
     CLOSE_MODAL,
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, OPEN_MODAL, REMOVE_GENRE_FROM_ANIME
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -60,9 +59,57 @@ const closeModal = () => {
     }
 };
 
+const fetchGenreList = (service, dispatch) => {
+    service.getGenresList()
+        .then((genres) => dispatch(fetchGenresSuccess(genres)));
+};
+
+const fetchSeasonList = (service, dispatch) => {
+    service.getSeasonsList()
+        .then((seasons) => dispatch(fetchSeasonsSuccess(seasons)));
+};
+
+const fetchAnimeTypeList = (service, dispatch) => {
+    service.getTypesList()
+        .then((types) => dispatch(fetchAnimeTypesSuccess(types)));
+};
+
+const fetchGenresSuccess = (genres) => {
+    return {
+        type: FETCH_ANIME_SUB_DATA,
+        payload: {
+            field: 'genres',
+            data: genres
+        }
+    }
+};
+
+const fetchSeasonsSuccess = (seasons) => {
+    return {
+        type: FETCH_ANIME_SUB_DATA,
+        payload: {
+            field: 'seasons',
+            data: seasons
+        }
+    }
+};
+
+const fetchAnimeTypesSuccess = (types) => {
+    return {
+        type: FETCH_ANIME_SUB_DATA,
+        payload: {
+            field: 'types',
+            data: types
+        }
+    }
+};
+
 export {
     fetchAnimes,
     fetchAnimeById,
     openModal,
-    closeModal
+    closeModal,
+    fetchGenreList,
+    fetchSeasonList,
+    fetchAnimeTypeList
 };

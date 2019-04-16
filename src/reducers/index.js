@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, OPEN_MODAL
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL
 } from "../action-types/ActionTypes";
 import {updateAnimeList} from "./animeList";
 
@@ -12,14 +12,9 @@ const initialState = {
     animes: [],
     loading: true,
     error: null,
-    genres: [
-        {id: 1, genre: "Action"},
-        {id: 2, genre: "Romance"},
-        {id: 3, genre: "Isekai"},
-        {id: 4, genre: "Horror"},
-        {id: 5, genre: "Drama"},
-        {id: 6, genre: "Fantasy"}
-    ]
+    genres: [],
+    seasons: [],
+    types: []
 };
 
 
@@ -39,6 +34,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isModalOpen: false
+            };
+        case FETCH_ANIME_SUB_DATA:
+            return {
+                ...state,
+                [action.payload.field]: action.payload.data
             };
         default:
             return state;

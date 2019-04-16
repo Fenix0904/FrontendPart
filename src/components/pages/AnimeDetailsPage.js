@@ -25,6 +25,7 @@ const AnimeDetailsPage = ({anime}) => {
                         <div className="d-flex">
                             <b className="mr-2">Type: </b>
                             <a href="#" className="mr-1 text-secondary">{anime.type}</a>
+                            <span className="text-secondary">({anime.episodesCount} ep.)</span>
                         </div>
                     </div>
                     <div className="d-flex">

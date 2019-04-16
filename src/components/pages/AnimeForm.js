@@ -2,16 +2,28 @@ import React from "react";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {connect} from "react-redux";
 import Genre from "../genre-ui/Genre";
+import {fetchAnimeTypeList, fetchGenreList, fetchSeasonList} from "../../actions/ActionsCreator";
+import compose from "../../utils/compose";
+import withService from "../hoc/withService";
 
 class AnimeForm extends React.Component {
 
     state = {
         anime: {
-            title: "",
-            description: "",
-            genres: []
+            title: '',
+            description: '',
+            genres: [],
+            season: '',
+            type: '',
+            image: ''
         }
     };
+
+    componentDidMount() {
+        this.props.loadGenreList();
+        this.props.loadSeasonList();
+        this.props.loadAnimeTypesList();
+    }
 
     removeGenre = (id) => {
         this.setState({
@@ -54,7 +66,7 @@ class AnimeForm extends React.Component {
     };
 
     render() {
-        const {createNewAnime = true, genres} = this.props;
+        const {createNewAnime = true, genres, seasons, types} = this.props;
         const {anime} = this.state;
         const title = createNewAnime ? 'Add new anime' : 'Edit';
         let noGenreLabel;
@@ -107,16 +119,28 @@ class AnimeForm extends React.Component {
                         <Form.Group as={Col} controlId="formGridSeason">
                             <Form.Label>Season</Form.Label>
                             <Form.Control as="select">
-                                <option>Choose...</option>
-                                <option>...</option>
+                                <option value="default">Choose...</option>
+                                {
+                                    seasons.map(item => {
+                                        return (
+                                            <option key={item.id} value={item.season}>{item.season}</option>
+                                        )
+                                    })
+                                }
                             </Form.Control>
                         </Form.Group>
 
                         <Form.Group as={Col} controlId="formGridType">
                             <Form.Label>Type</Form.Label>
                             <Form.Control as="select">
-                                <option>Choose...</option>
-                                <option>...</option>
+                                <option value="default">Choose...</option>
+                                {
+                                    types.map(item => {
+                                        return (
+                                            <option key={item.id} value={item.type}>{item.type}</option>
+                                        )
+                                    })
+                                }
                             </Form.Control>
                         </Form.Group>
                     </Form.Row>
@@ -151,8 +175,21 @@ class AnimeForm extends React.Component {
 
 const mapStateToProps = (state) => {
     return {
-        genres: state.genres
+        genres: state.genres,
+        seasons: state.seasons,
+        types: state.types
     }
 };
 
-export default connect(mapStateToProps)(AnimeForm);
+const mapDispatchToProps = (dispatch, ownProps) => {
+    return {
+        loadGenreList: () => fetchGenreList(ownProps.service, dispatch),
+        loadSeasonList: () => fetchSeasonList(ownProps.service, dispatch),
+        loadAnimeTypesList: () => fetchAnimeTypeList(ownProps.service, dispatch),
+    }
+};
+
+export default compose(
+    withService(),
+    connect(mapStateToProps, mapDispatchToProps),
+)(AnimeForm)
