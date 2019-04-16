@@ -35,6 +35,15 @@ class AnimeForm extends React.Component {
         })
     };
 
+    onPosterUploading = (e) => {
+        this.setState({
+           anime: {
+               ...this.state.anime,
+               image: e.target.files[0]
+           }
+        })
+    };
+
     removeGenre = (id) => {
         this.setState({
             anime: {
@@ -80,6 +89,7 @@ class AnimeForm extends React.Component {
         const {anime} = this.state;
         const title = createNewAnime ? 'Add new anime' : 'Edit';
         const noGenreLabel = anime.genres.length === 0 ? "You haven't added a genre yet." : "";
+        console.log(this.state);
         return (
             <Container>
                 <h2>{title}</h2>
@@ -167,8 +177,7 @@ class AnimeForm extends React.Component {
                             <div className="custom-file">
                                 <input type="file" className="custom-file-input" id="inputGroupFile"
                                        aria-describedby="inputGroupFile"
-                                       onChange={() => {
-                                       }}/>
+                                       onChange={e => this.onPosterUploading(e)}/>
                                 <label className="custom-file-label" htmlFor="inputGroupFile">Choose file</label>
                             </div>
                         </div>

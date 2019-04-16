@@ -3,7 +3,6 @@
   <component name="ChangeListManager">
     <list default="true" id="0ee5eaf2-14d5-41a2-b5b9-c2321ff33885" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/pages/AnimeForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/pages/AnimeForm.js" afterDir="false" />
     </list>
     <list id="93bdf9ef-922e-460e-83cb-55fa2e050e7f" name="Do not commit" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/profiles_settings.xml" beforeDir="false" />
@@ -36,7 +35,7 @@
           <entry key="js" value="178" />
           <entry key="json" value="5" />
           <entry key="md" value="1" />
-          <entry key="ts" value="9" />
+          <entry key="ts" value="10" />
           <entry key="xml" value="2" />
         </counts>
       </usages-collector>
@@ -48,7 +47,7 @@
           <entry key="JSON" value="5" />
           <entry key="JavaScript" value="178" />
           <entry key="PLAIN_TEXT" value="4" />
-          <entry key="TypeScript" value="9" />
+          <entry key="TypeScript" value="10" />
           <entry key="XML" value="2" />
         </counts>
       </usages-collector>
@@ -58,16 +57,16 @@
           <entry key="dummy" value="40" />
           <entry key="gitignore" value="10" />
           <entry key="html" value="5" />
-          <entry key="js" value="11548" />
-          <entry key="txt" value="970" />
+          <entry key="js" value="12232" />
+          <entry key="txt" value="1015" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="128" />
           <entry key="HTML" value="5" />
-          <entry key="JavaScript" value="11548" />
-          <entry key="PLAIN_TEXT" value="1020" />
+          <entry key="JavaScript" value="12232" />
+          <entry key="PLAIN_TEXT" value="1065" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.js.language.service.starts">
@@ -82,20 +81,11 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/components/pages/AnimeForm.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1855">
-              <caret line="187" column="134" selection-start-line="187" selection-start-column="134" selection-end-line="187" selection-end-column="134" />
+            <state relative-caret-position="2652">
+              <caret line="156" selection-start-line="156" selection-end-line="156" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/services/TestService.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
             </state>
           </provider>
         </entry>
@@ -108,15 +98,6 @@
               <folding>
                 <element signature="e#0#217#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="153">
-              <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
             </state>
           </provider>
         </entry>
@@ -180,9 +161,9 @@
         <option value="$PROJECT_DIR$/src/reducers/animeList.js" />
         <option value="$PROJECT_DIR$/src/action-types/ActionTypes.js" />
         <option value="$PROJECT_DIR$/src/actions/ActionsCreator.js" />
-        <option value="$PROJECT_DIR$/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/services/TestService.js" />
         <option value="$PROJECT_DIR$/src/components/pages/AnimeDetailsPage.js" />
+        <option value="$PROJECT_DIR$/src/reducers/index.js" />
         <option value="$PROJECT_DIR$/src/components/pages/AnimeForm.js" />
       </list>
     </option>
@@ -416,7 +397,7 @@
       <option name="presentableId" value="Default" />
       <updated>1554800901499</updated>
       <workItem from="1554800902679" duration="51000" />
-      <workItem from="1554800987503" duration="71180000" />
+      <workItem from="1554800987503" duration="74830000" />
     </task>
     <task id="LOCAL-00001" summary="Reformatted project structure. Added basic components. Added fake service.">
       <created>1554801649097</created>
@@ -551,11 +532,18 @@
       <option name="project" value="LOCAL" />
       <updated>1555408637333</updated>
     </task>
-    <option name="localTasksCounter" value="20" />
+    <task id="LOCAL-00020" summary="Added change listeners to form components.">
+      <created>1555411413762</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1555411413762</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="71231000" />
+    <option name="totallyTimeSpent" value="74881000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1936" height="1056" extended-state="6" />
@@ -634,7 +622,8 @@
     <MESSAGE value="Implemented adding/deleting of genres. Refactored reducers." />
     <MESSAGE value="Refactored anime form component. Remove reducer overhead." />
     <MESSAGE value="Connected season and type selects to service and redux." />
-    <option name="LAST_COMMIT_MESSAGE" value="Connected season and type selects to service and redux." />
+    <MESSAGE value="Added change listeners to form components." />
+    <option name="LAST_COMMIT_MESSAGE" value="Added change listeners to form components." />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/src/components/app/App.css">
@@ -855,13 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="1182" column="65" lean-forward="true" selection-start-line="1182" selection-start-column="65" selection-end-line="1182" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-bootstrap/es/Form.d.ts">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -957,10 +939,20 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/services/TestService.js">
+    <entry file="file://$PROJECT_DIR$/src/components/pages/AnimeDetailsPage.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
+        <state relative-caret-position="510">
+          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="153">
+          <caret line="16" column="13" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -974,27 +966,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/reducers/index.js">
+    <entry file="file://$PROJECT_DIR$/src/services/TestService.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="153">
-          <caret line="16" column="13" lean-forward="true" selection-start-line="16" selection-start-column="13" selection-end-line="16" selection-end-column="13" />
+        <state relative-caret-position="323">
+          <caret line="19" column="32" lean-forward="true" selection-start-line="19" selection-start-column="32" selection-end-line="19" selection-end-column="32" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/components/pages/AnimeDetailsPage.js">
+    <entry file="file://$APPLICATION_HOME_DIR$/plugins/JavaScriptLanguage/jsLanguageServicesImpl/external/lib.es5.d.ts">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="510">
-          <caret line="30" column="44" lean-forward="true" selection-start-line="30" selection-start-column="44" selection-end-line="30" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#26#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="265">
+          <caret line="40" column="17" selection-start-line="40" selection-start-column="17" selection-end-line="40" selection-end-column="17" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/components/pages/AnimeForm.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1855">
-          <caret line="187" column="134" selection-start-line="187" selection-start-column="134" selection-end-line="187" selection-end-column="134" />
+        <state relative-caret-position="2652">
+          <caret line="156" selection-start-line="156" selection-end-line="156" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>
