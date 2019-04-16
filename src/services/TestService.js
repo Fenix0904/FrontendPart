@@ -88,4 +88,14 @@ export default class TestService {
             }, 300)
         })
     }
+
+    addNewAnime(anime) {
+        this.data = [
+            ...this.data,
+            {
+                ...anime,
+                id: this.data.length + 1
+            }
+        ]
+    }
 }

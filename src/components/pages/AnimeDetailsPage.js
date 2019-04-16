@@ -47,7 +47,7 @@ const AnimeDetailsPage = ({anime}) => {
                 </div>
                 <div className="col-sm col-md-5 order-1 order-sm-2">
                     <div className="text-center">
-                        <img className="img-fluid" src="https://source.unsplash.com/random/340x430" alt=""/>
+                        <img className="img-fluid" src={anime.image ? anime.image : "https://source.unsplash.com/random/200x280"} alt=""/>
                     </div>
                 </div>
             </div>

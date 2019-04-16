@@ -2,7 +2,7 @@ import React from "react";
 import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import {connect} from "react-redux";
 import Genre from "../genre-ui/Genre";
-import {fetchAnimeTypeList, fetchGenreList, fetchSeasonList} from "../../actions/ActionsCreator";
+import {addNewAnime, fetchAnimeTypeList, fetchGenreList, fetchSeasonList} from "../../actions/ActionsCreator";
 import compose from "../../utils/compose";
 import withService from "../hoc/withService";
 
@@ -39,9 +39,15 @@ class AnimeForm extends React.Component {
         this.setState({
            anime: {
                ...this.state.anime,
-               image: e.target.files[0]
+               image: URL.createObjectURL(e.target.files[0])
            }
         })
+    };
+
+    onSubmitHandler = (e) => {
+        e.preventDefault();
+        this.props.addNewAnime(this.state.anime);
+        this.props.history.push("/");
     };
 
     removeGenre = (id) => {
@@ -93,7 +99,7 @@ class AnimeForm extends React.Component {
         return (
             <Container>
                 <h2>{title}</h2>
-                <Form>
+                <Form onSubmit={e => this.onSubmitHandler(e)}>
                     <Form.Group controlId="formGridTitle">
                         <Form.Label>Title</Form.Label>
                         <Form.Control placeholder="Enter title" onChange={e => this.onAnimePropertyChange(e, "title")}/>
@@ -209,6 +215,10 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         loadGenreList: () => fetchGenreList(ownProps.service, dispatch),
         loadSeasonList: () => fetchSeasonList(ownProps.service, dispatch),
         loadAnimeTypesList: () => fetchAnimeTypeList(ownProps.service, dispatch),
+        addNewAnime: (anime) => {
+            ownProps.service.addNewAnime(anime);
+            dispatch(addNewAnime(anime))
+        }
     }
 };
 

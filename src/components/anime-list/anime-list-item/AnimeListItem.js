@@ -5,7 +5,8 @@ import Text from 'react-dotdotdot'
 import {Card, Col, Row} from "react-bootstrap";
 
 const AnimeListItem = ({anime}) => {
-    const {id, title, genres, description} = anime;
+    const {id, title, genres, description, image} = anime;
+    console.log(anime);
     return (
         <Card className="mx-auto mx-sm-3 my-1">
             <Card.Body className="d-flex p-2 p-sm-3">
@@ -30,7 +31,7 @@ const AnimeListItem = ({anime}) => {
                         </Text>
                     </Col>
                     <Col xl={3} md={4} xs={5} className="poster align-self-center">
-                        <img className="img-fluid" src="https://source.unsplash.com/random/200x280" alt=""/>
+                        <img className="img-fluid" src={image ? image : "https://source.unsplash.com/random/200x280"} alt=""/>
                     </Col>
                 </Row>
             </Card.Body>

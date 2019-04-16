@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -104,6 +104,13 @@ const fetchAnimeTypesSuccess = (types) => {
     }
 };
 
+const addNewAnime = (anime) => {
+    return {
+        type: ADD_NEW_ANIME,
+        payload: anime
+    }
+};
+
 export {
     fetchAnimes,
     fetchAnimeById,
@@ -111,5 +118,6 @@ export {
     closeModal,
     fetchGenreList,
     fetchSeasonList,
-    fetchAnimeTypeList
+    fetchAnimeTypeList,
+    addNewAnime
 };

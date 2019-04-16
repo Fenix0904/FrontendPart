@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
 } from "../action-types/ActionTypes";
 import {updateAnimeList} from "./animeList";
 
@@ -39,6 +39,14 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 [action.payload.field]: action.payload.data
+            };
+        case ADD_NEW_ANIME:
+            return {
+                ...state,
+                animes: [
+                    ...state.animes,
+                    action.payload
+                ]
             };
         default:
             return state;
