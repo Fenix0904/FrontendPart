@@ -60,25 +60,9 @@ const closeModal = () => {
     }
 };
 
-const addGenreToAnime = (genre) => {
-    return {
-        type: ADD_GENRE_TO_ANIME,
-        payload: genre
-    }
-};
-
-const removeGenreToAnime = (id) => {
-    return {
-        type: REMOVE_GENRE_FROM_ANIME,
-        payload: id
-    }
-};
-
 export {
     fetchAnimes,
     fetchAnimeById,
     openModal,
-    closeModal,
-    addGenreToAnime,
-    removeGenreToAnime
+    closeModal
 };

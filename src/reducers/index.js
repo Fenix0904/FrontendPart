@@ -1,12 +1,10 @@
 import {
-    ADD_GENRE_TO_ANIME,
     CLOSE_MODAL,
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, OPEN_MODAL, REMOVE_GENRE_FROM_ANIME
+    FETCH_ERROR, OPEN_MODAL
 } from "../action-types/ActionTypes";
-import {updateLocalAnime} from "./anime";
 import {updateAnimeList} from "./animeList";
 
 const initialState = {
@@ -21,10 +19,7 @@ const initialState = {
         {id: 4, genre: "Horror"},
         {id: 5, genre: "Drama"},
         {id: 6, genre: "Fantasy"}
-    ],
-    anime: {
-        genres: []
-    }
+    ]
 };
 
 
@@ -35,9 +30,6 @@ const reducer = (state = initialState, action) => {
         case FETCH_ANIME_SUCCESS:
         case FETCH_ERROR:
             return updateAnimeList(state, action);
-        case ADD_GENRE_TO_ANIME:
-        case REMOVE_GENRE_FROM_ANIME:
-            return updateLocalAnime(state, action);
         case OPEN_MODAL:
             return {
                 ...state,
