@@ -18,7 +18,7 @@ const AnimeDetailsPage = ({anime}) => {
                     <div className="d-flex">
                         <div className="d-flex">
                             <b className="mr-2">Season: </b>
-                            <a href="#" className="mr-1 text-secondary">{anime.season}</a>
+                            <a href="#" className="mr-1 text-secondary">{anime.season.season}</a>
                         </div>
                     </div>
                     <div className="d-flex">
@@ -47,7 +47,7 @@ const AnimeDetailsPage = ({anime}) => {
                 </div>
                 <div className="col-sm col-md-5 order-1 order-sm-2">
                     <div className="text-center">
-                        <img className="img-fluid" src={anime.image ? anime.image : "https://source.unsplash.com/random/200x280"} alt=""/>
+                        <img className="img-fluid" src={anime.poster ? anime.poster : "https://source.unsplash.com/random/200x280"} alt=""/>
                     </div>
                 </div>
             </div>

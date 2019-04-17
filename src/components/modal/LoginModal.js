@@ -1,41 +1,38 @@
 import React from "react";
-import Button from "react-bootstrap/Button";
-import Modal from "react-bootstrap/Modal";
 import {connect} from "react-redux";
 import {closeModal} from "../../actions/ActionsCreator";
+import {Button, Input, InputGroup, InputGroupAddon, Modal, ModalBody, ModalFooter, ModalHeader} from "reactstrap";
 
 const LoginModal = ({isModalOpen, closeWithoutSingingUp}) => {
     return (
-        <Modal show={isModalOpen} onHide={closeWithoutSingingUp}>
-            <Modal.Header closeButton>
-                <Modal.Title>Login</Modal.Title>
-            </Modal.Header>
-            <Modal.Body>
-                <div className="input-group input-group-md mb-3">
-                    <div className="input-group-prepend">
-                            <span className="input-group-text">
+        <Modal isOpen={isModalOpen} toggle={closeWithoutSingingUp}>
+            <ModalHeader>Login</ModalHeader>
+            <ModalBody>
+                <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                        <span className="input-group-text">
                                 <i className="fas fa-user"/>
                             </span>
-                    </div>
-                    <input type="text" className="form-control" placeholder="Username"/>
-                </div>
-                <div className="input-group input-group-md mb-3">
-                    <div className="input-group-prepend">
-                            <span className="input-group-text">
+                    </InputGroupAddon>
+                    <Input placeholder="Username"/>
+                </InputGroup>
+                <InputGroup className="mb-3">
+                    <InputGroupAddon addonType="prepend">
+                        <span className="input-group-text">
                                 <i className="fas fa-key"/>
                             </span>
-                    </div>
-                    <input type="password" className="form-control" placeholder="Password"/>
-                </div>
-            </Modal.Body>
-            <Modal.Footer>
-                <Button variant="secondary" onClick={closeWithoutSingingUp}>
+                    </InputGroupAddon>
+                    <Input placeholder="Password" type="password"/>
+                </InputGroup>
+            </ModalBody>
+            <ModalFooter>
+                <Button color="secondary" onClick={closeWithoutSingingUp}>
                     Close
                 </Button>
-                <Button variant="primary" onClick={closeWithoutSingingUp}>
+                <Button color="primary" onClick={closeWithoutSingingUp}>
                     Login
                 </Button>
-            </Modal.Footer>
+            </ModalFooter>
         </Modal>
     )
 };

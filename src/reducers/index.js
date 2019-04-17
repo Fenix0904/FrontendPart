@@ -43,10 +43,7 @@ const reducer = (state = initialState, action) => {
         case ADD_NEW_ANIME:
             return {
                 ...state,
-                animes: [
-                    ...state.animes,
-                    action.payload
-                ]
+                loading: true
             };
         default:
             return state;

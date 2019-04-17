@@ -4,7 +4,7 @@ import './App.css';
 import {HomePage, AnimeDetailsPage} from "../pages";
 import Header from "../header/Header";
 import LoginModal from "../modal/LoginModal";
-import AnimeForm from "../pages/AnimeForm";
+import AnimeFormContainer from "../pages/form/AnimeFormContainer";
 
 const App = () => {
     return (
@@ -14,7 +14,7 @@ const App = () => {
             <Switch>
                 <Route path="/" component={HomePage} exact/>
                 <Route path="/animes/:id" component={AnimeDetailsPage}/>
-                <Route path="/create" component={AnimeForm}/>
+                <Route path="/create" component={AnimeFormContainer}/>
             </Switch>
         </main>
     )

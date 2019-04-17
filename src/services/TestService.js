@@ -3,7 +3,10 @@ export default class TestService {
         {
             id: 1,
             title: "Sword Art Online",
-            season: "Spring 2019",
+            season: {
+                id: 1,
+                season: "Spring 2019"
+            },
             type: "TV",
             episodesCount: "24",
             genres: [
@@ -15,7 +18,10 @@ export default class TestService {
         {
             id: 2,
             title: "Konosuba",
-            season: "Summer 2014",
+            season: {
+                id: 2,
+                season: "Spring 2014"
+            },
             type: "TV",
             episodesCount: "12",
             genres: [
@@ -90,12 +96,16 @@ export default class TestService {
     }
 
     addNewAnime(anime) {
-        this.data = [
-            ...this.data,
-            {
-                ...anime,
-                id: this.data.length + 1
-            }
-        ]
+        return new Promise((resolve) => {
+            setTimeout(() => {
+                resolve(this.data = [
+                    ...this.data,
+                    {
+                        ...anime,
+                        id: this.data.length + 1
+                    }
+                ]);
+            }, 300)
+        })
     }
 }

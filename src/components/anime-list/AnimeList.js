@@ -7,7 +7,7 @@ import {fetchAnimes} from "../../actions/ActionsCreator";
 import compose from "../../utils/compose";
 import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
-import {Container, ListGroup} from "react-bootstrap";
+import {Container, ListGroup} from "reactstrap";
 
 const AnimeList = ({animes}) => {
     return (

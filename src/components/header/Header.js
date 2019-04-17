@@ -3,23 +3,42 @@ import "./Header.css";
 import {Link} from "react-router-dom";
 import {openModal} from "../../actions/ActionsCreator";
 import {connect} from "react-redux";
-import {Nav, Navbar} from "react-bootstrap";
+import {Collapse, Nav, Navbar, NavbarBrand, NavbarToggler, NavItem, NavLink} from "reactstrap";
 
-const Header = ( {openModal} ) => {
-    return (
-        <Navbar bg="light" expand="sm">
-            <Navbar.Brand as={Link} to="/">AniSite</Navbar.Brand>
-            <Navbar.Toggle aria-controls="navbarNav" />
-            <Navbar.Collapse id="navbarNav">
-                <Nav className="ml-auto">
-                    <Nav.Link onClick={openModal}>Sing In</Nav.Link>
-                    <Nav.Link>Sing Up</Nav.Link>
-                    <Nav.Link as={Link} to="/create">Create</Nav.Link>
-                </Nav>
-            </Navbar.Collapse>
-        </Navbar>
-    )
-};
+class Header extends React.Component {
+
+    state = {
+        collapsed: true
+    };
+
+    toggleNavbar = () => {
+        this.setState({
+            collapsed: !this.state.collapsed
+        });
+    };
+
+    render() {
+        return (
+            <Navbar color="light" light expand="sm">
+                <NavbarBrand tag={Link} to="/">AniSite</NavbarBrand>
+                <NavbarToggler onClick={this.toggleNavbar}/>
+                <Collapse isOpen={!this.state.collapsed} navbar>
+                    <Nav className="ml-auto" navbar>
+                        <NavItem>
+                            <NavLink onClick={this.props.openModal}>Sing In</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink>Sing Up</NavLink>
+                        </NavItem>
+                        <NavItem>
+                            <NavLink tag={Link} to="/create">Create</NavLink>
+                        </NavItem>
+                    </Nav>
+                </Collapse>
+            </Navbar>
+        )
+    }
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
