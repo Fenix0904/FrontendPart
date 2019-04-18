@@ -1,10 +1,17 @@
 import React from "react";
 import AnimeForm from './AnimeForm';
 import ErrorIndicator from "../../error-indicator/ErrorIndicator";
-import {addNewAnime, fetchAnimeTypeList, fetchGenreList, fetchSeasonList} from "../../../actions/ActionsCreator";
+import {
+    addNewAnime,
+    fetchAnimeTypeList,
+    fetchGenreList,
+    fetchSeasonList,
+    uploadPoster
+} from "../../../actions/ActionsCreator";
 import compose from "../../../utils/compose";
 import withService from "../../hoc/withService";
 import connect from "react-redux/es/connect/connect";
+import BackDrop from "../../spinner/back-drop/BackDrop";
 
 class AnimeFormContainer extends React.Component {
 
@@ -15,9 +22,9 @@ class AnimeFormContainer extends React.Component {
             genres: [],
             season: {},
             type: 'NONE',
-            episodesCount: null,
-            poster: ''
-        }
+            episodesCount: 0
+        },
+        poster: null
     };
 
     async componentDidMount() {
@@ -36,17 +43,24 @@ class AnimeFormContainer extends React.Component {
     };
 
     onPosterUploading = (e) => {
+        const file = e.target.files[0];
         this.setState({
-            anime: {
-                ...this.state.anime,
-                poster: e.target.files[0]
-            }
+            ...this.state,
+            poster: file
         })
     };
 
     onSubmitHandler = (e) => {
         e.preventDefault();
-        this.props.addNewAnime(this.state.anime);
+        this.props.addNewAnime(this.state.anime)
+            .then(res => {
+                    console.log(res.id);
+                    const formData = new FormData();
+                    formData.append('poster', this.state.poster);
+                    formData.append('animeId', res.id);
+                    this.props.uploadPoster(formData);
+                }
+            );
     };
 
     removeGenre = (id) => {
@@ -109,7 +123,7 @@ class AnimeFormContainer extends React.Component {
     render() {
         const {loading, error} = this.props;
         // if (loading) {
-        //     return <Spinner/>;
+        //     return <BackDrop/>;
         // }
         if (error) {
             return <ErrorIndicator/>;
@@ -147,8 +161,12 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         loadSeasonList: () => fetchSeasonList(ownProps.service, dispatch),
         loadAnimeTypesList: () => fetchAnimeTypeList(ownProps.service, dispatch),
         addNewAnime: (anime) => {
-            dispatch(addNewAnime(anime));
-            ownProps.service.addNewAnime(anime).then(ownProps.history.push("/"));
+            dispatch(addNewAnime());
+            return ownProps.service.addNewAnime(anime);
+        },
+        uploadPoster: (formData) => {
+            dispatch(uploadPoster());
+            return ownProps.service.uploadPoster(formData);
         }
     }
 };

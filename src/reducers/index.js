@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, UPLOAD_POSTER
 } from "../action-types/ActionTypes";
 import {updateAnimeList} from "./animeList";
 
@@ -17,7 +17,7 @@ const initialState = {
     types: []
 };
 
-
+// TODO crear reducer code add/remove actions for better usability.
 const reducer = (state = initialState, action) => {
     switch (action.type) {
         case FETCH_DATA_REQUESTED:
@@ -38,9 +38,15 @@ const reducer = (state = initialState, action) => {
         case FETCH_ANIME_SUB_DATA:
             return {
                 ...state,
-                [action.payload.field]: action.payload.data
+                [action.payload.field]: action.payload.data,
+                loading: false
             };
         case ADD_NEW_ANIME:
+            return {
+                ...state,
+                loading: true
+            };
+        case UPLOAD_POSTER:
             return {
                 ...state,
                 loading: true

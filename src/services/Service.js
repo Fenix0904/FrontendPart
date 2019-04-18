@@ -28,7 +28,12 @@ export default class Service {
     };
 
     addNewAnime = async (anime) => {
-        const res = axios.post(`/animes/create/`, anime);
+        const res = await axios.post(`/animes/create/`, anime);
+        return res.data;
+    };
+
+    uploadPoster = async (formdata) => {
+        const res = await axios.post(`/animes/uploadPoster/`, formdata);
         return res.data;
     };
 }

@@ -4,7 +4,7 @@ import { Provider } from 'react-redux';
 import { BrowserRouter as Router } from 'react-router-dom';
 import App from './components/app/App';
 import ErrorBoundary from './components/error-boundary/ErrorBoundary';
-import Service from './services/TestService';
+import Service from './services/Service';
 import {ServiceContextProvider} from "./components/service-context/ServiceContext";
 import store from './store';
 import 'bootstrap/dist/css/bootstrap.min.css';
