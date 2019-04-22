@@ -110,12 +110,6 @@ const addNewAnime = () => {
     }
 };
 
-const uploadPoster = () => {
-    return {
-        type: UPLOAD_POSTER,
-    }
-};
-
 export {
     fetchAnimes,
     fetchAnimeById,
@@ -124,6 +118,5 @@ export {
     fetchGenreList,
     fetchSeasonList,
     fetchAnimeTypeList,
-    addNewAnime,
-    uploadPoster
+    addNewAnime
 };

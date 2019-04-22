@@ -6,4 +6,3 @@ export const OPEN_MODAL = 'OPEN_MODAL';
 export const CLOSE_MODAL = 'CLOSE_MODAL';
 export const FETCH_ANIME_SUB_DATA = 'FETCH_ANIME_SUB_DATA';
 export const ADD_NEW_ANIME = 'ADD_NEW_ANIME';
-export const UPLOAD_POSTER = 'UPLOAD_POSTER';

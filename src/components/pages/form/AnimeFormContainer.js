@@ -52,15 +52,13 @@ class AnimeFormContainer extends React.Component {
 
     onSubmitHandler = (e) => {
         e.preventDefault();
-        this.props.addNewAnime(this.state.anime)
-            .then(res => {
-                    console.log(res.id);
-                    const formData = new FormData();
-                    formData.append('poster', this.state.poster);
-                    formData.append('animeId', res.id);
-                    this.props.uploadPoster(formData);
-                }
-            );
+        const formData = new FormData();
+        formData.append('anime', JSON.stringify(this.state.anime));
+        formData.append('poster', this.state.poster);
+
+        this.props.addNewAnime(formData).then((res) => {
+            this.props.history.push("/");
+        })
     };
 
     removeGenre = (id) => {
@@ -163,10 +161,6 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         addNewAnime: (anime) => {
             dispatch(addNewAnime());
             return ownProps.service.addNewAnime(anime);
-        },
-        uploadPoster: (formData) => {
-            dispatch(uploadPoster());
-            return ownProps.service.uploadPoster(formData);
         }
     }
 };

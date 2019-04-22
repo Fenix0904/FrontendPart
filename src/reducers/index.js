@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, UPLOAD_POSTER
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
 } from "../action-types/ActionTypes";
 import {updateAnimeList} from "./animeList";
 
@@ -42,11 +42,6 @@ const reducer = (state = initialState, action) => {
                 loading: false
             };
         case ADD_NEW_ANIME:
-            return {
-                ...state,
-                loading: true
-            };
-        case UPLOAD_POSTER:
             return {
                 ...state,
                 loading: true
