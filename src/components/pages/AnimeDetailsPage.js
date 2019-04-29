@@ -18,7 +18,7 @@ const AnimeDetailsPage = ({anime}) => {
                     <div className="d-flex">
                         <div className="d-flex">
                             <b className="mr-2">Season: </b>
-                            <a href="#" className="mr-1 text-secondary">{anime.season.season}</a>
+                            <a href="#" className="mr-1 text-secondary">{anime.animeSeason.season}</a>
                         </div>
                     </div>
                     <div className="d-flex">

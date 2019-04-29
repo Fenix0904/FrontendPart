@@ -11,7 +11,6 @@ import {
 import compose from "../../../utils/compose";
 import withService from "../../hoc/withService";
 import connect from "react-redux/es/connect/connect";
-import BackDrop from "../../spinner/back-drop/BackDrop";
 
 class AnimeFormContainer extends React.Component {
 
@@ -20,7 +19,7 @@ class AnimeFormContainer extends React.Component {
             title: '',
             description: '',
             genres: [],
-            season: {},
+            animeSeason: {},
             type: 'NONE',
             episodesCount: 0
         },
@@ -106,14 +105,17 @@ class AnimeFormContainer extends React.Component {
         if (value === 'default') {
             return;
         }
-        const season = {
-            id: globalSeasons.find(el => el.season.toLowerCase() === value.toLowerCase()).id,
-            season: value
+        const season = value.slice(0, value.length - 5).toUpperCase();
+
+        const animeSeason = {
+            id: globalSeasons.find(el => el.season.toLowerCase() === season.toLowerCase()).id,
+            season: season,
+            year: value.slice(value.length - 4)
         };
         this.setState({
             anime: {
                 ...this.state.anime,
-                season: season
+                animeSeason: animeSeason
             }
         });
     };

@@ -87,7 +87,7 @@ const AnimeForm = (props) => {
                                 {
                                     seasons.map(item => {
                                         return (
-                                            <option key={item.id} value={item.season}>{item.season}</option>
+                                            <option key={item.id} value={item.season + ' ' + item.year}>{item.season + ' ' + item.year}</option>
                                         )
                                     })
                                 }
@@ -104,9 +104,9 @@ const AnimeForm = (props) => {
                                             id="types">
                                         <option value="default">Choose...</option>
                                         {
-                                            types.map(item => {
+                                            types.map((item, index) => {
                                                 return (
-                                                    <option key={item.id} value={item.type}>{item.type}</option>
+                                                    <option key={index} value={item}>{item}</option>
                                                 )
                                             })
                                         }

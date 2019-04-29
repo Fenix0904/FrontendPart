@@ -3,7 +3,7 @@ export default class TestService {
         {
             id: 1,
             title: "Sword Art Online",
-            season: {
+            animeSeason: {
                 id: 1,
                 season: "Spring 2019"
             },
