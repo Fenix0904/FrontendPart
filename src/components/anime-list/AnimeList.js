@@ -9,7 +9,7 @@ import Spinner from "../spinner/Spinner";
 import ErrorIndicator from "../error-indicator/ErrorIndicator";
 import {Container, ListGroup} from "reactstrap";
 
-const AnimeList = ({animes}) => {
+const AnimeList = ({animes, baseUrl}) => {
     return (
         <Container>
             <ListGroup>
@@ -17,7 +17,10 @@ const AnimeList = ({animes}) => {
                 animes.map((anime) => {
                     return (
                         <div key={anime.id}>
-                            <AnimeListItem anime={anime}/>
+                            <AnimeListItem
+                                anime={anime}
+                                baseUrl={baseUrl}
+                            />
                         </div>
                     )
                 })
@@ -34,7 +37,7 @@ class AnimeListContainer extends React.Component {
     }
 
     render() {
-        const {animes, loading, error} = this.props;
+        const {animes, loading, error, service} = this.props;
         if (loading) {
             return <Spinner/>;
         }
@@ -42,7 +45,12 @@ class AnimeListContainer extends React.Component {
             return <ErrorIndicator/>;
         }
 
-        return <AnimeList animes={animes}/>;
+        const baseUrl = service.getBaseUrl();
+
+        return <AnimeList
+            animes={animes}
+            baseUrl={baseUrl}
+        />;
     }
 }
 

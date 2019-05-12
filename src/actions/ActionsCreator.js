@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, UPLOAD_POSTER
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -60,16 +60,19 @@ const closeModal = () => {
 };
 
 const fetchGenreList = (service, dispatch) => {
+    dispatch(dataRequested());
     service.getGenresList()
         .then((genres) => dispatch(fetchGenresSuccess(genres)));
 };
 
 const fetchSeasonList = (service, dispatch) => {
+    dispatch(dataRequested());
     service.getSeasonsList()
         .then((seasons) => dispatch(fetchSeasonsSuccess(seasons)));
 };
 
 const fetchAnimeTypeList = (service, dispatch) => {
+    dispatch(dataRequested());
     service.getTypesList()
         .then((types) => dispatch(fetchAnimeTypesSuccess(types)));
 };
@@ -110,6 +113,10 @@ const addNewAnime = () => {
     }
 };
 
+const deleteAnime = (id, service) => {
+     return service.deleteAnime(id);
+};
+
 export {
     fetchAnimes,
     fetchAnimeById,
@@ -118,5 +125,6 @@ export {
     fetchGenreList,
     fetchSeasonList,
     fetchAnimeTypeList,
-    addNewAnime
+    addNewAnime,
+    deleteAnime
 };

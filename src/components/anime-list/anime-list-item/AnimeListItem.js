@@ -4,8 +4,8 @@ import {Link} from "react-router-dom";
 import Text from 'react-dotdotdot'
 import {Card, CardBody, CardSubtitle, CardTitle, Col, Row} from "reactstrap";
 
-const AnimeListItem = ({anime}) => {
-    const {id, title, genres, description, image} = anime;
+const AnimeListItem = ({anime, baseUrl}) => {
+    const {id, title, genres, description, poster} = anime;
     console.log(anime);
     return (
         <Card className="mx-auto mx-sm-3 my-1">
@@ -31,7 +31,7 @@ const AnimeListItem = ({anime}) => {
                         </Text>
                     </Col>
                     <Col xl={3} md={4} xs={5} className="poster align-self-center">
-                        <img className="img-fluid" src={image ? image : "https://source.unsplash.com/random/200x280"} alt=""/>
+                        <img className="img-fluid" src={poster ? baseUrl + "/img/" + poster : "https://source.unsplash.com/random/200x280"} alt=""/>
                     </Col>
                 </Row>
             </CardBody>

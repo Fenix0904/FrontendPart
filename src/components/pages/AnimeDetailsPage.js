@@ -5,11 +5,20 @@ import ErrorIndicator from "../error-indicator/ErrorIndicator";
 import compose from "../../utils/compose";
 import withService from "../hoc/withService";
 import connect from "react-redux/es/connect/connect";
-import {fetchAnimeById} from "../../actions/ActionsCreator";
+import {deleteAnime, fetchAnimeById} from "../../actions/ActionsCreator";
 
-const AnimeDetailsPage = ({anime}) => {
+const AnimeDetailsPage = ({anime, baseUrl, editAnime, deleteAnime}) => {
     return (
         <div className="container py-2">
+            <div className="row justify-content-end">
+                <button className='btn btn-primary mr-2' onClick={() => editAnime(anime.id)}>
+                    Edit
+                </button>
+
+                <button className='btn btn-danger' onClick={() => deleteAnime(anime.id)}>
+                    Delete
+                </button>
+            </div>
             <div className="row">
                 <h4 className="mx-auto text-primary">{anime.title}</h4>
             </div>
@@ -18,7 +27,7 @@ const AnimeDetailsPage = ({anime}) => {
                     <div className="d-flex">
                         <div className="d-flex">
                             <b className="mr-2">Season: </b>
-                            <a href="#" className="mr-1 text-secondary">{anime.animeSeason.season}</a>
+                            <a href="#" className="mr-1 text-secondary">{anime.animeSeason ? anime.animeSeason.season : null}</a>
                         </div>
                     </div>
                     <div className="d-flex">
@@ -47,7 +56,7 @@ const AnimeDetailsPage = ({anime}) => {
                 </div>
                 <div className="col-sm col-md-5 order-1 order-sm-2">
                     <div className="text-center">
-                        <img className="img-fluid" src={anime.poster ? anime.poster : "https://source.unsplash.com/random/200x280"} alt=""/>
+                        <img className="img-fluid" src={anime.poster ? baseUrl + "/img/" + anime.poster : "https://source.unsplash.com/random/200x280"} alt=""/>
                     </div>
                 </div>
             </div>
@@ -61,8 +70,24 @@ class AnimeDetailsPageContainer extends React.Component {
         this.props.fetchAnimeById(this.props.match.params.id);
     }
 
+    editAnime = (id) => {
+
+    };
+
+    deleteAnime = (id) => {
+        if (window.confirm("Are u sure?")) {
+            this.props.deleteAnime(id)
+                .then((res) => {
+                    console.log(res);
+
+                    if (res.status === 200)
+                        this.props.history.push("/")
+                });
+        }
+    };
+
     render() {
-        const {anime, loading, error} = this.props;
+        const {anime, loading, error, service} = this.props;
         if (loading) {
             return <Spinner/>;
         }
@@ -70,7 +95,14 @@ class AnimeDetailsPageContainer extends React.Component {
             return <ErrorIndicator/>;
         }
 
-        return <AnimeDetailsPage anime={anime}/>;
+        const baseUrl = service.getBaseUrl();
+
+        return <AnimeDetailsPage
+            anime={anime}
+            baseUrl={baseUrl}
+            editAnime={this.editAnime}
+            deleteAnime={this.deleteAnime}
+        />;
     }
 }
 
@@ -84,7 +116,8 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
-        fetchAnimeById: (id) => fetchAnimeById(ownProps.service, dispatch, id)
+        fetchAnimeById: (id) => fetchAnimeById(ownProps.service, dispatch, id),
+        deleteAnime: (id) => deleteAnime(id, ownProps.service, dispatch)
     }
 };
 

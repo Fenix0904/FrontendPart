@@ -14,7 +14,7 @@ import {AvForm, AvGroup, AvField, AvInput, AvFeedback} from "availity-reactstrap
 
 const AnimeForm = (props) => {
 
-    const {createNewAnime = true, genres, seasons, types} = props;
+    const {createNewAnime = true, genres, seasons, types, poster} = props;
     const {anime} = props;
     const {
         onSubmitHandler,
@@ -26,6 +26,8 @@ const AnimeForm = (props) => {
     } = props;
     const title = createNewAnime ? 'Add new anime' : 'Edit';
     const noGenreLabel = anime.genres.length === 0 ? "You haven't added a genre yet." : "";
+    console.log(poster);
+
     return (
         <Container>
             <h2>{title}</h2>
@@ -102,9 +104,9 @@ const AnimeForm = (props) => {
                                     <select className="input-group-text"
                                             onChange={(e) => onAnimePropertyChange(e, "type")}
                                             id="types">
-                                        <option value="default">Choose...</option>
+                                        <option value="NONE">Choose...</option>
                                         {
-                                            types.map((item, index) => {
+                                            types.slice(0, types.length - 1).map((item, index) => {
                                                 return (
                                                     <option key={index} value={item}>{item}</option>
                                                 )
@@ -135,7 +137,9 @@ const AnimeForm = (props) => {
                             <input type="file" className="custom-file-input" id="inputGroupFile"
                                    aria-describedby="inputGroupFile"
                                    onChange={e => onPosterUploading(e)}/>
-                            <label className="custom-file-label" htmlFor="inputGroupFile">Choose file</label>
+                            <label className="custom-file-label" htmlFor="inputGroupFile">
+                                {poster ? poster.name : "Choose file"}
+                            </label>
                         </div>
                     </div>
                 </FormGroup>

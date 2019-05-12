@@ -5,12 +5,12 @@ import {
     addNewAnime,
     fetchAnimeTypeList,
     fetchGenreList,
-    fetchSeasonList,
-    uploadPoster
+    fetchSeasonList
 } from "../../../actions/ActionsCreator";
 import compose from "../../../utils/compose";
 import withService from "../../hoc/withService";
 import connect from "react-redux/es/connect/connect";
+import Spinner from "../../spinner/Spinner";
 
 class AnimeFormContainer extends React.Component {
 
@@ -122,9 +122,9 @@ class AnimeFormContainer extends React.Component {
 
     render() {
         const {loading, error} = this.props;
-        // if (loading) {
-        //     return <BackDrop/>;
-        // }
+        if (loading) {
+            return <Spinner/>;
+        }
         if (error) {
             return <ErrorIndicator/>;
         }
@@ -134,6 +134,7 @@ class AnimeFormContainer extends React.Component {
             types={this.props.types}
             genres={this.props.genres}
             seasons={this.props.seasons}
+            poster={this.state.poster}
             addGenre={this.addGenre}
             addSeason={this.addSeason}
             removeGenre={this.removeGenre}
