@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, EDIT_ANIME, UPDATE_ANIME
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -107,6 +107,19 @@ const fetchAnimeTypesSuccess = (types) => {
     }
 };
 
+const createNewAnime = (service, dispatch, anime) => {
+    dispatch(addNewAnime());
+    return service.addNewAnime(anime)
+};
+
+const updateAnime = (service, dispatch, anime) => {
+    const action = {
+        type: UPDATE_ANIME
+    };
+    dispatch(action);
+    return service.updateAnime(anime)
+};
+
 const addNewAnime = () => {
     return {
         type: ADD_NEW_ANIME,
@@ -117,6 +130,12 @@ const deleteAnime = (id, service) => {
      return service.deleteAnime(id);
 };
 
+const editAnime = (id) => {
+    return {
+        type: EDIT_ANIME
+    }
+};
+
 export {
     fetchAnimes,
     fetchAnimeById,
@@ -125,6 +144,8 @@ export {
     fetchGenreList,
     fetchSeasonList,
     fetchAnimeTypeList,
-    addNewAnime,
-    deleteAnime
+    createNewAnime,
+    deleteAnime,
+    editAnime,
+    updateAnime
 };

@@ -34,8 +34,11 @@ export default class Service {
     };
 
     addNewAnime = async (anime) => {
-        const res = await axios.post(`${this.baseURL}/animes/create/`, anime);
-        return res.data;
+        return await axios.post(`${this.baseURL}/animes/create/`, anime);
+    };
+
+    updateAnime = async (anime) => {
+        return await axios.put(`${this.baseURL}/animes/update/`, anime);
     };
 
     deleteAnime = async (id) => {

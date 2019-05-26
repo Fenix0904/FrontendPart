@@ -5,7 +5,7 @@ import ErrorIndicator from "../error-indicator/ErrorIndicator";
 import compose from "../../utils/compose";
 import withService from "../hoc/withService";
 import connect from "react-redux/es/connect/connect";
-import {deleteAnime, fetchAnimeById} from "../../actions/ActionsCreator";
+import {deleteAnime, editAnime, fetchAnimeById} from "../../actions/ActionsCreator";
 
 const AnimeDetailsPage = ({anime, baseUrl, editAnime, deleteAnime}) => {
     return (
@@ -71,15 +71,14 @@ class AnimeDetailsPageContainer extends React.Component {
     }
 
     editAnime = (id) => {
-
+        this.props.editAnime(id);
+        this.props.history.push(`/update/${id}`);
     };
 
     deleteAnime = (id) => {
         if (window.confirm("Are u sure?")) {
             this.props.deleteAnime(id)
                 .then((res) => {
-                    console.log(res);
-
                     if (res.status === 200)
                         this.props.history.push("/")
                 });
@@ -117,7 +116,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch, ownProps) => {
     return {
         fetchAnimeById: (id) => fetchAnimeById(ownProps.service, dispatch, id),
-        deleteAnime: (id) => deleteAnime(id, ownProps.service, dispatch)
+        deleteAnime: (id) => deleteAnime(id, ownProps.service, dispatch),
+        editAnime: (id) => dispatch(editAnime(id))
     }
 };
 

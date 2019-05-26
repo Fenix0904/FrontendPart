@@ -1,16 +1,7 @@
 import React from "react";
 import Genre from "../../genre-ui/Genre";
-import {
-    Button,
-    Col,
-    Container,
-    FormGroup,
-    Input,
-    InputGroup,
-    Label,
-    Row
-} from "reactstrap";
-import {AvForm, AvGroup, AvField, AvInput, AvFeedback} from "availity-reactstrap-validation";
+import {Button, Col, Container, FormGroup, Input, InputGroup, Label, Row} from "reactstrap";
+import {AvFeedback, AvField, AvForm, AvGroup, AvInput} from "availity-reactstrap-validation";
 
 const AnimeForm = (props) => {
 
@@ -26,8 +17,6 @@ const AnimeForm = (props) => {
     } = props;
     const title = createNewAnime ? 'Add new anime' : 'Edit';
     const noGenreLabel = anime.genres.length === 0 ? "You haven't added a genre yet." : "";
-    console.log(poster);
-
     return (
         <Container>
             <h2>{title}</h2>
@@ -35,14 +24,21 @@ const AnimeForm = (props) => {
                 <AvGroup>
                     <Label for="title">Title</Label>
                     <AvField name="title" type="text" placeholder="Enter title"
-                             onChange={e => onAnimePropertyChange(e, "title")} id="title" validate={{
-                        required: {value: true, errorMessage: 'Please enter a title'}
-                    }}/>
+                             onChange={e => onAnimePropertyChange(e, "title")}
+                             id="title"
+                             value={anime.title}
+                             validate={{
+                                 required: {value: true, errorMessage: 'Please enter a title'}
+                             }}/>
                 </AvGroup>
 
                 <FormGroup>
                     <Label for="description">Description</Label>
-                    <Input type="textarea" onChange={e => onAnimePropertyChange(e, "description")} id="description"/>
+                    <Input type="textarea"
+                           onChange={e => onAnimePropertyChange(e, "description")}
+                           id="description"
+                           value={anime.description}
+                    />
                 </FormGroup>
 
                 <Row className="align-items-center">
@@ -88,8 +84,17 @@ const AnimeForm = (props) => {
                                 <option value="default">Choose...</option>
                                 {
                                     seasons.map(item => {
+                                        let isSelected = false;
+                                        if (item.id === anime.animeSeason.id) {
+                                            isSelected = true;
+                                        }
                                         return (
-                                            <option key={item.id} value={item.season + ' ' + item.year}>{item.season + ' ' + item.year}</option>
+                                            <option key={item.id}
+                                                    value={item.season + ' ' + item.year}
+                                                    selected={isSelected}
+                                            >
+                                                {item.season + ' ' + item.year}
+                                            </option>
                                         )
                                     })
                                 }
@@ -107,15 +112,21 @@ const AnimeForm = (props) => {
                                         <option value="NONE">Choose...</option>
                                         {
                                             types.slice(0, types.length - 1).map((item, index) => {
+                                                let isSelected = false;
+                                                if (item === anime.type) {
+                                                    isSelected = true;
+                                                }
                                                 return (
-                                                    <option key={index} value={item}>{item}</option>
+                                                    <option key={index} value={item} selected={isSelected}>{item}</option>
                                                 )
                                             })
                                         }
                                     </select>
                                 </div>
                                 <AvInput name="episodesCount" type="text" placeholder="Episodes"
-                                         onChange={e => onAnimePropertyChange(e, "episodesCount")} id="title"
+                                         onChange={e => onAnimePropertyChange(e, "episodesCount")}
+                                         id="title"
+                                         value={anime.episodesCount}
                                          validate={{
                                              pattern: {
                                                  value: '/^[0-9]+$/',
@@ -146,7 +157,7 @@ const AnimeForm = (props) => {
                 <Row>
                     <Col className="align-content-end">
                         <Button color="primary" type="submit" className="align-self-end">
-                            Add
+                            {createNewAnime ? "Add" : "Update"}
                         </Button>
                     </Col>
                 </Row>

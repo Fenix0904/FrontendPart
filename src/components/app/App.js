@@ -15,6 +15,7 @@ const App = () => {
                 <Route path="/" component={HomePage} exact/>
                 <Route path="/animes/:id" component={AnimeDetailsPage}/>
                 <Route path="/create" component={AnimeFormContainer}/>
+                <Route path="/update/:id" component={AnimeFormContainer}/>
             </Switch>
         </main>
     )

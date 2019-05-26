@@ -2,10 +2,11 @@ import React from "react";
 import AnimeForm from './AnimeForm';
 import ErrorIndicator from "../../error-indicator/ErrorIndicator";
 import {
-    addNewAnime,
+    createNewAnime,
     fetchAnimeTypeList,
     fetchGenreList,
-    fetchSeasonList
+    fetchSeasonList,
+    updateAnime
 } from "../../../actions/ActionsCreator";
 import compose from "../../../utils/compose";
 import withService from "../../hoc/withService";
@@ -14,24 +15,21 @@ import Spinner from "../../spinner/Spinner";
 
 class AnimeFormContainer extends React.Component {
 
+    initialAnimeState = {
+        title: '',
+        description: '',
+        genres: [],
+        animeSeason: {},
+        type: 'NONE',
+        episodesCount: 0
+    };
+
     state = {
         anime: {
-            title: '',
-            description: '',
-            genres: [],
-            animeSeason: {},
-            type: 'NONE',
-            episodesCount: 0
+            ...this.initialAnimeState
         },
         poster: null
     };
-
-    async componentDidMount() {
-        this.props.loadGenreList();
-        this.props.loadSeasonList();
-        this.props.loadAnimeTypesList();
-    }
-
     onAnimePropertyChange = (e, prop) => {
         this.setState({
             anime: {
@@ -40,7 +38,6 @@ class AnimeFormContainer extends React.Component {
             }
         })
     };
-
     onPosterUploading = (e) => {
         const file = e.target.files[0];
         this.setState({
@@ -48,18 +45,26 @@ class AnimeFormContainer extends React.Component {
             poster: file
         })
     };
-
     onSubmitHandler = (e) => {
         e.preventDefault();
         const formData = new FormData();
         formData.append('anime', JSON.stringify(this.state.anime));
         formData.append('poster', this.state.poster);
 
-        this.props.addNewAnime(formData).then((res) => {
-            this.props.history.push("/");
-        })
+        if (this.props.isEditingAnime) {
+            this.props.updateAnime(formData).then((res) => {
+                if (res.status === 200) {
+                    this.props.history.push(`/animes/${this.props.match.params.id}`);
+                }
+            })
+        } else {
+            this.props.addNewAnime(formData).then((res) => {
+                if (res.status === 200) {
+                    this.props.history.push("/");
+                }
+            })
+        }
     };
-
     removeGenre = (id) => {
         this.setState({
             anime: {
@@ -71,7 +76,6 @@ class AnimeFormContainer extends React.Component {
             }
         });
     };
-
     addGenre = (genreTitle) => {
         const globalGenres = this.props.genres;
         const localGenres = this.state.anime.genres;
@@ -99,7 +103,6 @@ class AnimeFormContainer extends React.Component {
             }
         });
     };
-
     addSeason = (value) => {
         const globalSeasons = this.props.seasons;
         if (value === 'default') {
@@ -120,6 +123,25 @@ class AnimeFormContainer extends React.Component {
         });
     };
 
+    async componentDidMount() {
+        if (this.props.isEditingAnime) {
+            this.setState({
+                ...this.state,
+                anime: this.props.animes[0]
+            });
+        } else {
+            this.setState({
+                ...this.state,
+                anime: {
+                    ...this.initialAnimeState
+                }
+            });
+        }
+        this.props.loadGenreList();
+        this.props.loadSeasonList();
+        this.props.loadAnimeTypesList();
+    }
+
     render() {
         const {loading, error} = this.props;
         if (loading) {
@@ -135,6 +157,7 @@ class AnimeFormContainer extends React.Component {
             genres={this.props.genres}
             seasons={this.props.seasons}
             poster={this.state.poster}
+            createNewAnime={!this.props.isEditingAnime}
             addGenre={this.addGenre}
             addSeason={this.addSeason}
             removeGenre={this.removeGenre}
@@ -152,7 +175,9 @@ const mapStateToProps = (state) => {
         seasons: state.seasons,
         types: state.types,
         loading: state.loading,
-        error: state.error
+        error: state.error,
+        isEditingAnime: state.isEditingAnime,
+        animes: state.animes
     }
 };
 
@@ -161,10 +186,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         loadGenreList: () => fetchGenreList(ownProps.service, dispatch),
         loadSeasonList: () => fetchSeasonList(ownProps.service, dispatch),
         loadAnimeTypesList: () => fetchAnimeTypeList(ownProps.service, dispatch),
-        addNewAnime: (anime) => {
-            dispatch(addNewAnime());
-            return ownProps.service.addNewAnime(anime);
-        }
+        addNewAnime: (anime) => createNewAnime(ownProps.service, dispatch, anime),
+        updateAnime: (anime) => updateAnime(ownProps.service, dispatch, anime)
     }
 };
 

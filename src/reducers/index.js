@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, EDIT_ANIME
 } from "../action-types/ActionTypes";
 import {updateAnimeList} from "./animeList";
 
@@ -14,7 +14,8 @@ const initialState = {
     error: null,
     genres: [],
     seasons: [],
-    types: []
+    types: [],
+    isEditingAnime: false
 };
 
 // TODO crear reducer code add/remove actions for better usability.
@@ -45,6 +46,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 loading: true
+            };
+        case EDIT_ANIME:
+            return {
+                ...state,
+                isEditingAnime: true
             };
         default:
             return state;
