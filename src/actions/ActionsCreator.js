@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, EDIT_ANIME, UPDATE_ANIME
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, EDIT_ANIME, UPDATE_ANIME, CLEAR_EDIT_FORM
 } from "../action-types/ActionTypes";
 
 const animesLoaded = (newAnimes) => {
@@ -127,13 +127,19 @@ const addNewAnime = () => {
 };
 
 const deleteAnime = (id, service) => {
-     return service.deleteAnime(id);
+    return service.deleteAnime(id);
 };
 
 const editAnime = (id) => {
     return {
         type: EDIT_ANIME
     }
+};
+
+const clearState = (dispatch) => {
+    dispatch({
+        type: CLEAR_EDIT_FORM
+    });
 };
 
 export {
@@ -147,5 +153,6 @@ export {
     createNewAnime,
     deleteAnime,
     editAnime,
-    updateAnime
+    updateAnime,
+    clearState
 };

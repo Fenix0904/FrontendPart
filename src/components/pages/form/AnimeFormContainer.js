@@ -2,6 +2,7 @@ import React from "react";
 import AnimeForm from './AnimeForm';
 import ErrorIndicator from "../../error-indicator/ErrorIndicator";
 import {
+    clearState,
     createNewAnime,
     fetchAnimeTypeList,
     fetchGenreList,
@@ -123,6 +124,10 @@ class AnimeFormContainer extends React.Component {
         });
     };
 
+    componentWillUnmount() {
+        this.props.clearState();
+    }
+
     async componentDidMount() {
         if (this.props.isEditingAnime) {
             this.setState({
@@ -187,7 +192,8 @@ const mapDispatchToProps = (dispatch, ownProps) => {
         loadSeasonList: () => fetchSeasonList(ownProps.service, dispatch),
         loadAnimeTypesList: () => fetchAnimeTypeList(ownProps.service, dispatch),
         addNewAnime: (anime) => createNewAnime(ownProps.service, dispatch, anime),
-        updateAnime: (anime) => updateAnime(ownProps.service, dispatch, anime)
+        updateAnime: (anime) => updateAnime(ownProps.service, dispatch, anime),
+        clearState: () => clearState(dispatch),
     }
 };
 

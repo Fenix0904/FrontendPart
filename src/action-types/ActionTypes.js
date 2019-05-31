@@ -8,3 +8,4 @@ export const FETCH_ANIME_SUB_DATA = 'FETCH_ANIME_SUB_DATA';
 export const ADD_NEW_ANIME = 'ADD_NEW_ANIME';
 export const EDIT_ANIME = 'EDIT_ANIME';
 export const UPDATE_ANIME = 'UPDATE_ANIME';
+export const CLEAR_EDIT_FORM = 'CLEAR_EDIT_FORM';

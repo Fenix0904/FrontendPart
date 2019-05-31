@@ -27,7 +27,7 @@ const AnimeDetailsPage = ({anime, baseUrl, editAnime, deleteAnime}) => {
                     <div className="d-flex">
                         <div className="d-flex">
                             <b className="mr-2">Season: </b>
-                            <a href="#" className="mr-1 text-secondary">{anime.animeSeason ? anime.animeSeason.season : null}</a>
+                            <a href="#" className="mr-1 text-secondary">{anime.animeSeason ? anime.animeSeason.season + " " + anime.animeSeason.year : null}</a>
                         </div>
                     </div>
                     <div className="d-flex">

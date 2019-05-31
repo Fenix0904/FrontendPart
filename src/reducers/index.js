@@ -3,7 +3,7 @@ import {
     FETCH_ANIME_SUCCESS,
     FETCH_ANIMES_SUCCESS,
     FETCH_DATA_REQUESTED,
-    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, EDIT_ANIME
+    FETCH_ERROR, FETCH_ANIME_SUB_DATA, OPEN_MODAL, ADD_NEW_ANIME, EDIT_ANIME, CLEAR_EDIT_FORM
 } from "../action-types/ActionTypes";
 import {updateAnimeList} from "./animeList";
 
@@ -51,6 +51,11 @@ const reducer = (state = initialState, action) => {
             return {
                 ...state,
                 isEditingAnime: true
+            };
+        case CLEAR_EDIT_FORM:
+            return {
+                ...state,
+                isEditingAnime: false
             };
         default:
             return state;
